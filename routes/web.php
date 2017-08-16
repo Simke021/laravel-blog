@@ -12,18 +12,42 @@
 */
 
 // contact page
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('contact', 'PagesController@getContact');
+// about page
+Route::get('about', 'PagesController@getAbout');
+// home page
+Route::get('/', 'PagesController@getIndex');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// contact page
+// Route::get('contact', function () {
+//     return view('contact');
+// });
 
 // about page
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('about', function () {
+//     return view('about');
+// });
 
 // home page
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
