@@ -9,7 +9,21 @@ class PagesController extends Controller
     }
 
     public function getAbout(){
-        return view('pages.about');
+        $first = 'Aleksandar';
+        $last  = 'Ljubišić';
+        
+
+        $fullname = $first . " " . $last;
+        $email    = "nekiemail@email.com";
+
+        $data     = [];
+        $data['email'] = $email;
+        $data['fullname'] = $fullname;
+
+        return view('pages.about')->withData($data);  //                           - treci nacin
+        // return view('pages.about')->withFullname($fullname)->withEmail($email); - drugi nacin
+        // $full  = $first . " " . $last;
+        // return view('pages.about')->with("fullname", $full);                    - prvi nacin
     }
 
     public function getContact(){
