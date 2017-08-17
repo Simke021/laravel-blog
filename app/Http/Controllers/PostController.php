@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Post;
 use Session;
 
@@ -51,6 +52,9 @@ class PostController extends Controller
 
         $post->save();
 
+        // Session flash message  flash traje do refreshovanja strane a put do isteka sesije
+        Session::flash('success', 'The blog post  is successfully save!');
+
         // redirekcija
         return redirect()->route('posts.show', $post->id);
     }
@@ -63,7 +67,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        
+        return view('posts.show');
     }
 
     /**
