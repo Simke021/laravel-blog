@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Session;
+
 
 class PostController extends Controller
 {
@@ -34,7 +37,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validacija
+        $this->validate($request, array(
+            'title' => 'required|max:191',
+            'body'  => 'required'
+        ));
+
+        // cuvanje u bazi
+        $post = new Post;
+
+        $post->title = $request->title;
+        $post->body  = $request->body;
+
+        $post->save();
+
+        // redirekcija
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -45,7 +63,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
