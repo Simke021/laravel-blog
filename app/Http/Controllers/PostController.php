@@ -67,7 +67,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        // Prikaz postova iz baze eloquent function find()
+        $post = Post::find($id);
+        return view('posts.show')->withPost($post);
     }
 
     /**
