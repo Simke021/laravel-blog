@@ -9,7 +9,7 @@
 			<h1>All Posts</h1>
 		</div>
 		<div class="col-md-2">
-			<a href="{{ route('posts.create') }}" class="btn btn-sm btn-block btn-primary create-button-margin">Create New Post</a>
+			<a href="{{ route('posts.create') }}" class="btn btn-sm btn-block btn-primary create-button-margin btn-lg">Create New Post</a>
 		</div>
 		<div class="col-md-12">
 			<hr>
@@ -30,6 +30,7 @@
 
 				<tbody>
 				@foreach($posts as $post)
+
 					<tr>
 						<td>{{ $post->id }}</td>
 						<td>{{ substr($post->title, 0, 20) }} {{ strlen($post->title) > 20 ? "..." : "" }}</td>
@@ -40,9 +41,15 @@
 							<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a>
 						</td>
 					</tr>
+
 				@endforeach
 				</tbody>
 			</table>
+
+			<div class="text-center">
+				{!! $posts->links(); !!}
+			</div>
+
 		</div>
 	</div>
 

@@ -17,8 +17,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //kupim sve postove u promenljivu posts, eloquent metoda all()
-        $posts = Post::all();
+        // kupim sve postove u promenljivu posts, eloquent metoda all()
+        // $posts = Post::all();
+
+        // Sortiranje i Pagination postova
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return view('posts.index')->withPosts($posts);
     }
