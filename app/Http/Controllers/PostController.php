@@ -17,7 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //kupim sve postove u promenljivu posts, eloquent metoda all()
+        $posts = Post::all();
+
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -80,7 +83,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // trazim post po id-u iz baze i cuvam ga u promenljivoj post
+        $post = Post::find($id);
+
+        // return view
+        return view('posts.edit')->withPost($post);
     }
 
     /**
