@@ -46,7 +46,9 @@ class PostController extends Controller
     {
         // Validacija
         $this->validate($request, array(
-            'title' => 'required|max:191',
+            'title' => 'required|min:10|max:191',
+            // validacija slug-a, dodajem alpha_dash validaciju/laravel dokumentacija i unique
+            'slug'  => 'required|alpha_dash|min:5|max:191|unique:posts, slug',
             'body'  => 'required'
         ));
 
@@ -54,6 +56,7 @@ class PostController extends Controller
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug  = $request->slug;
         $post->body  = $request->body;
 
         $post->save();
@@ -104,7 +107,9 @@ class PostController extends Controller
     {
         // Validacija
         $this->validate($request, array(
-            'title' => 'required|max:191',
+            'title' => 'required|min:10|max:191',
+            // validacija slug-a, dodajem alpha_dash validaciju/laravel dokumentacija
+            'slug'  => 'required|alpha_dash|min:5|max:191',
             'body'  => 'required'
         ));
 
@@ -113,6 +118,7 @@ class PostController extends Controller
 
         // Update post-a
         $post->title = $request->input('title');
+        $post->slug  = $request->input('slug');
         $post->body  = $request->input('body');
 
         // Cuvam u bazu

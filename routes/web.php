@@ -11,6 +11,14 @@
 |
 */
 
+// blog/slug
+Route::get('blog/{slug}',['as' => 'blog.single','uses' => 'BlogController@getSingle'
+	// reg. izraz prihvata bilo koji koje slovo, bilo koji broj, - ili _
+])->where('slug', '[\w\d\-\_]+');
+
+// blog page
+Route::get('blog', ['as' => 'blog.index', 'uses' => 'BlogController@getIndex' ]);
+
 // contact page
 Route::get('contact', 'PagesController@getContact');
 // about page
@@ -19,6 +27,7 @@ Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
 
 Route::resource('posts', 'PostController');
+
 
 
 
