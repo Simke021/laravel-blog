@@ -11,7 +11,7 @@ class BlogController extends Controller
 	public function getIndex(){
 
 		// Uzimam sve postove iz baze i prikazujem 10 po strani
-		$posts = Post::paginate(1);
+		$posts = Post::paginate(5);
     	return view('blog.index')->withPosts($posts);	
     }
 

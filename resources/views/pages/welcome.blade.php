@@ -29,5 +29,13 @@
       <div class="col-md-3 col-md-offset-1 ">
         <h3>Sidebar</h3>
       </div>  
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            {!! $posts->links() !!}
+          </div>
+        </div>  
+      </div>
     </div><!-- End of row-->
 @endsection

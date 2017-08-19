@@ -48,7 +48,7 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|min:10|max:191',
             // validacija slug-a, dodajem alpha_dash validaciju/laravel dokumentacija i unique
-            'slug'  => 'required|alpha_dash|min:5|max:191|unique:posts, slug',
+            'slug'  => 'required|alpha_dash|min:5|max:191|unique:posts,slug',
             'body'  => 'required'
         ));
 
@@ -62,7 +62,7 @@ class PostController extends Controller
         $post->save();
 
         // Session flash message  flash traje do refreshovanja strane a put do isteka sesije
-        Session::flash('success', 'The blog post  is successfully save!');
+        Session::flash('success', 'The blog post  is successfully saved!');
 
         // redirekcija
         return redirect()->route('posts.show', $post->id);
@@ -106,12 +106,23 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // Validacija
-        $this->validate($request, array(
+        $post = Post::find($id);
+
+        if ($request->input('slug') == $post->slug){
+            $this->validate($request, array(
             'title' => 'required|min:10|max:191',
-            // validacija slug-a, dodajem alpha_dash validaciju/laravel dokumentacija
-            'slug'  => 'required|alpha_dash|min:5|max:191',
             'body'  => 'required'
-        ));
+           ));
+
+        }else{
+            $this->validate($request, array(
+                'title' => 'required|min:10|max:191',
+                // validacija slug-a, dodajem alpha_dash validaciju/laravel dokumentacija
+                'slug'  => 'required|alpha_dash|min:5|max:191|unique:posts,slug',
+                'body'  => 'required'
+            ));
+            
+        }
 
         // Trazim iz baze post po id-u
         $post = Post::find($id);
@@ -125,7 +136,7 @@ class PostController extends Controller
         $post->save();
 
         // Session flash poruka
-        Session::flash('success', 'This post successfully saved!');
+        Session::flash('success', 'Blog post successfully saved!');
 
         // Redirekcija
         return redirect()->route('posts.show', $post->id);
