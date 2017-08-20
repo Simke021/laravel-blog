@@ -23,19 +23,13 @@
             <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) > 300 ? "..." : "" }}</p>
             <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary btn-xs">Read More</a>        
         </div>
+
       @endforeach
 
       </div>
       <div class="col-md-3 col-md-offset-1 ">
         <h3>Sidebar</h3>
       </div>  
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">
-            {!! $posts->links() !!}
-          </div>
-        </div>  
-      </div>
+     
     </div><!-- End of row-->
 @endsection
